@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  {# SEO #}
+  <title>{% block title %}{{ SITETITLE }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ SITEDESCRIPTION }}{% endblock %}" />
+  <meta name="author" content="{{ AUTHOR }}" />
+  <link rel="canonical" href="{{ SITEURL }}{% block canonical_path %}/{% endblock %}" />
+
+  {# Open Graph #}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ SITENAME }}" />
+  <meta property="og:title" content="{% block og_title %}{{ SITETITLE }}{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}{{ SITEDESCRIPTION }}{% endblock %}" />
+  <meta property="og:url" content="{{ SITEURL }}{% block og_path %}/{% endblock %}" />
+
+  {# Twitter Card #}
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{% block twitter_title %}{{ SITETITLE }}{% endblock %}" />
+  <meta name="twitter:description" content="{% block twitter_description %}{{ SITEDESCRIPTION }}{% endblock %}" />
+
+  {# Favicon — inline SVG data URI #}
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2337474f'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='18' fill='%2300897b'>D</text></svg>" />
+
+  {# Styles #}
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css" />
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+
+  {# ── Navigation ───────────────────────────────────────────── #}
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="{{ SITEURL }}/" class="nav-logo" aria-label="DataEngineX home">
+        <span class="nav-logo-d">D</span><span class="nav-logo-ex">EX</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        {% for title, url in MENUITEMS %}
+        <li>
+          <a href="{{ url }}"
+             {% if url.startswith('http') %}target="_blank" rel="noopener noreferrer"{% endif %}
+             class="nav-link{% if title == 'GitHub' %} nav-link--cta{% endif %}">
+            {{ title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+
+  {# ── Main content ─────────────────────────────────────────── #}
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {# ── Footer ───────────────────────────────────────────────── #}
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="nav-logo-d">D</span><span class="nav-logo-ex">EX</span>
+        <p class="footer-tagline">Config-driven. Self-hosted. Production-ready.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul role="list">
+          <li><a href="{{ GITHUB_URL }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="{{ PYPI_URL }}" target="_blank" rel="noopener noreferrer">PyPI</a></li>
+          <li><a href="{{ DOCS_URL }}" target="_blank" rel="noopener noreferrer">Docs</a></li>
+          <li><a href="{{ SITEURL }}/changelog/">Changelog</a></li>
+          <li><a href="{{ GITHUB_URL }}/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a></li>
+        </ul>
+      </nav>
+      <p class="footer-copy">
+        &copy; 2025 DataEngineX. Apache 2.0.
+      </p>
+    </div>
+  </footer>
+
+  {# ── Mobile nav toggle ────────────────────────────────────── #}
+  <script>
+    (function () {
+      var btn = document.querySelector('.nav-toggle');
+      var links = document.getElementById('nav-links');
+      if (!btn || !links) return;
+      btn.addEventListener('click', function () {
+        var open = links.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }());
+  </script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
