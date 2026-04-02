@@ -10,12 +10,12 @@ dependencies = [
 ]
 
 [tool.poe.tasks]
-dev = "pelican --autoreload --listen --port 8080 content -s pelicanconf.py"
-build = "pelican content -o output -s publishconf.py"
+dev = { shell = "PYTHONPATH=. pelican --autoreload --listen --port 8080 content -s pelicanconf.py" }
+build = { shell = "PYTHONPATH=. pelican content -o output -s publishconf.py" }
 clean = { shell = "rm -rf output" }
 serve = { shell = "cd output && python -m http.server 8080" }
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "poethepoet>=0.31",
 ]
