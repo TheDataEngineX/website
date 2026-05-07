@@ -3,9 +3,9 @@ from __future__ import annotations
 AUTHOR = "TheDataEngineX"
 SITENAME = "TheDataEngineX"
 SITEURL = "https://thedataenginex.org"
-SITETITLE = "DataEngineX — Unified Data + ML + AI Framework | Self-Hosted, Open Source"
-SITEDESCRIPTION = "DataEngineX is an open-source, self-hosted Python framework that unifies data pipelines, ML lifecycle, and AI agents in one config file. The open-source alternative to Airflow + MLflow + LangChain + FastAPI."
-SITE_KEYWORDS = "DataEngineX, dex framework, self-hosted data platform, unified data ML AI framework, open source Airflow alternative, open source MLflow alternative, Python data pipeline framework, config-driven data pipeline, AI agents framework, open source LangChain alternative"
+SITETITLE = "DataEngineX — Complete Data + ML + AI Engineering Platform"
+SITEDESCRIPTION = "DataEngineX is the complete platform for Data + ML + AI engineering. Production-ready pipelines, ML lifecycle, and AI agents unified under one dex.yaml. Native integrations with Airflow, MLflow, LangChain, and more."
+SITE_KEYWORDS = "DataEngineX, complete data platform, end-to-end ML platform, AI engineering platform, self-hosted data platform, data ML AI framework, dex framework, config-driven data pipeline, Python data framework, DuckDB pipeline, MLflow integration, LangChain integration"
 
 PATH = "content"
 TIMEZONE = "UTC"
