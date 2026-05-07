@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-AUTHOR = "Jay"
-SITENAME = "DataEngineX"
-SITEURL = "http://localhost:8080"
-SITETITLE = "DataEngineX — Data + ML + AI Framework"
-SITEDESCRIPTION = "Unified Data + ML + AI framework. Config-driven, self-hosted, production-ready."
+AUTHOR = "TheDataEngineX"
+SITENAME = "TheDataEngineX"
+SITEURL = "https://thedataenginex.org"
+SITETITLE = "DataEngineX — Unified Data + ML + AI Framework | Self-Hosted, Open Source"
+SITEDESCRIPTION = "DataEngineX is an open-source, self-hosted Python framework that unifies data pipelines, ML lifecycle, and AI agents in one config file. The open-source alternative to Airflow + MLflow + LangChain + FastAPI."
+SITE_KEYWORDS = "DataEngineX, dex framework, self-hosted data platform, unified data ML AI framework, open source Airflow alternative, open source MLflow alternative, Python data pipeline framework, config-driven data pipeline, AI agents framework, open source LangChain alternative"
 
 PATH = "content"
 TIMEZONE = "UTC"

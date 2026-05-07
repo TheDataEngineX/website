@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}DataEngineX — Data + ML + AI Framework{% endblock %}
-{% block description %}DataEngineX unifies data pipelines, ML lifecycle, and AI agents in a single config file. Config-driven, self-hosted, production-ready. Replaces Airflow + MLflow + LangChain + FastAPI glue.{% endblock %}
+{% block title %}DataEngineX — Unified Data + ML + AI Framework | Open Source, Self-Hosted{% endblock %}
+{% block description %}DataEngineX is an open-source, self-hosted Python framework that unifies data pipelines, ML lifecycle, and AI agents in a single dex.yaml config file. The open-source alternative to Airflow, MLflow, and LangChain.{% endblock %}
 
 {% block content %}
 
@@ -12,11 +12,11 @@
   <div class="container hero-inner">
     <div class="hero-text">
       <div class="hero-eyebrow">
-        <span class="badge">v0.9.18</span>
-        <span class="badge badge--teal">pre-1.0</span>
+        <span class="badge">v1.1.1</span>
+        <span class="badge badge--teal">stable</span>
       </div>
       <h1 id="hero-headline" class="hero-headline">
-        One config file.<br />Entire data stack.
+        DataEngineX: One config file.<br />Entire data stack.
       </h1>
       <p class="hero-sub">
         DataEngineX unifies data pipelines, ML lifecycle, and AI agents.
@@ -318,8 +318,8 @@
 ══════════════════════════════════════════════════════════════ #}
 <section class="ecosystem" aria-labelledby="ecosystem-headline">
   <div class="container">
-    <h2 id="ecosystem-headline" class="section-headline">Three components, one ecosystem</h2>
-    <p class="section-sub">Each component is independently useful. Together they cover the full lifecycle.</p>
+    <h2 id="ecosystem-headline" class="section-headline">One core. Four components.</h2>
+    <p class="section-sub">Each component is independently useful. Together they cover data, ML, AI, and careers.</p>
 
     <div class="ecosystem-grid">
 
@@ -332,7 +332,7 @@
               <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
-          <span class="eco-version">v0.9.18</span>
+          <span class="eco-version">v1.1.1</span>
         </div>
         <h3 class="eco-title">dataenginex</h3>
         <p class="eco-package"><code>pip install dataenginex</code></p>
@@ -354,12 +354,30 @@
               <line x1="13" y1="10" x2="17" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <span class="eco-badge">NiceGUI</span>
+          <span class="eco-badge">Reflex</span>
         </div>
         <h3 class="eco-title">dex-studio</h3>
         <p class="eco-package">Port 7860</p>
-        <p class="eco-desc">Web UI — single pane of glass built on NiceGUI. Monitor pipelines, browse data, inspect ML experiments, and chat with AI agents.</p>
+        <p class="eco-desc">B2B web UI built on Reflex (Python→React). Monitor pipelines, browse data, inspect ML experiments, chat with AI agents, query via SQL console.</p>
         <a href="https://github.com/TheDataEngineX/dex-studio" target="_blank" rel="noopener noreferrer" class="eco-link">
+          View on GitHub →
+        </a>
+      </article>
+
+      <article class="eco-card">
+        <div class="eco-card-header">
+          <div class="eco-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <span class="eco-badge">Reflex</span>
+        </div>
+        <h3 class="eco-title">careerdex</h3>
+        <p class="eco-package">Port 7870</p>
+        <p class="eco-desc">B2C career AI — job matching, resume analysis, ATS scanning, interview prep, and application tracking. Powered by the same dex core.</p>
+        <a href="https://github.com/TheDataEngineX/careerdex" target="_blank" rel="noopener noreferrer" class="eco-link">
           View on GitHub →
         </a>
       </article>
@@ -377,7 +395,7 @@
         </div>
         <h3 class="eco-title">infradex</h3>
         <p class="eco-package">Terraform + Helm</p>
-        <p class="eco-desc">K3s cluster config, Helm charts, and Terraform modules. From blank VPS to production-grade Kubernetes cluster — no manual YAML.</p>
+        <p class="eco-desc">K3s cluster config, Helm charts for Authentik, Langfuse, Qdrant, Prometheus, Grafana, ArgoCD. From blank VPS to production Kubernetes — no manual YAML.</p>
         <a href="https://github.com/TheDataEngineX/infradex" target="_blank" rel="noopener noreferrer" class="eco-link">
           View on GitHub →
         </a>
@@ -408,10 +426,10 @@ uv add dataenginex</code></pre>
       <div class="install-group">
         <span class="install-label">Extras</span>
         <div class="code-window code-window--sm">
-          <pre class="code-block"><code>pip install "dataenginex[spark]"    <span class="c"># PySpark transforms</span>
-pip install "dataenginex[mlflow]"   <span class="c"># MLflow backend</span>
-pip install "dataenginex[agents]"   <span class="c"># LangGraph agents</span>
-pip install "dataenginex[all]"      <span class="c"># Everything</span></code></pre>
+          <pre class="code-block"><code>pip install "dataenginex[cloud]"         <span class="c"># S3 · GCS · BigQuery</span>
+pip install "dataenginex[auth]"          <span class="c"># RS256 · SCIM v2 · LDAP</span>
+pip install "dataenginex[observability]" <span class="c"># Langfuse LLM tracing</span>
+pip install 'litellm>=1.83.3' --no-deps  <span class="c"># 100+ LLM providers</span></code></pre>
         </div>
       </div>
     </div>

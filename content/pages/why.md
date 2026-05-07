@@ -1,7 +1,7 @@
 ---
-title: Why DataEngineX
+title: Why DataEngineX — Open Source Alternative to Airflow, MLflow, and LangChain
 slug: why
-description: Why one config file beats stitching N tools together
+description: DataEngineX is an open-source, self-hosted Python framework that replaces Airflow, MLflow, LangChain, and FastAPI glue. One dex.yaml config file manages your entire data pipeline, ML lifecycle, and AI agents stack.
 template: page
 ---
 
@@ -67,13 +67,19 @@ One `dex serve` command starts everything. No glue code.
 Opinionated defaults, zero lock-in. Every layer is swappable:
 
 ```bash
-pip install "dataenginex[dagster]"    # swap orchestration
-pip install "dataenginex[mlflow]"     # swap experiment tracking
-pip install "dataenginex[agents]"     # LangGraph agent runtime
-pip install "dataenginex[spark]"      # PySpark transforms
+pip install "dataenginex[cloud]"         # S3 + GCS + BigQuery connectors
+pip install "dataenginex[auth]"          # RS256/JWKS + SCIM v2 + LDAP sync
+pip install "dataenginex[observability]" # Langfuse LLM tracing
+pip install 'litellm>=1.83.3' --no-deps  # 100+ LLM providers (separate install)
 ```
 
 The config stays the same. The backend changes.
+
+---
+
+## Enterprise-Ready Auth
+
+RBAC, SCIM v2 user provisioning, LDAP/AD sync, and OIDC federation (RS256/JWKS) ship as first-class extras — not bolt-ons. Enable them with env vars, not code changes.
 
 ---
 
