@@ -12,7 +12,7 @@
   <div class="container hero-inner">
     <div class="hero-text">
       <div class="hero-eyebrow">
-        <span class="badge">v1.1.1</span>
+        <span class="badge">v1.1.2</span>
         <span class="badge badge--teal">stable</span>
       </div>
       <h1 id="hero-headline" class="hero-headline">
@@ -65,10 +65,6 @@
   <span class="ky">agents</span><span class="p">:</span>
     <span class="p">-</span> <span class="ky">name</span><span class="p">:</span> <span class="s">analyst</span>
       <span class="ky">tools</span><span class="p">:</span> <span class="p">[</span><span class="s">sql</span><span class="p">,</span> <span class="s">search</span><span class="p">]</span>
-
-<span class="ky">server</span><span class="p">:</span>
-  <span class="ky">auth</span><span class="p">:</span> <span class="s">jwt</span>
-  <span class="ky">rate_limit</span><span class="p">:</span> <span class="s">100/min</span>
 
 <span class="ky">observability</span><span class="p">:</span>
   <span class="ky">metrics</span><span class="p">:</span> <span class="s">prometheus</span>
@@ -176,8 +172,8 @@
             <path d="M11 26l3-4h4l3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
           </svg>
         </div>
-        <h3 class="feature-title">Server</h3>
-        <p class="feature-desc">FastAPI with JWT auth, rate limiting, and health checks. API, background workers, and scheduler under one roof.</p>
+        <h3 class="feature-title">DEX Studio</h3>
+        <p class="feature-desc">Self-hosted web UI — pipelines, warehouse, ML experiments, AI agents, and SQL console. FastAPI/Jinja2, port 7860.</p>
       </article>
 
       {# Observability #}
@@ -297,12 +293,6 @@
     <span class="p">-</span> <span class="ky">name</span><span class="p">:</span> <span class="s">analyst</span>
       <span class="ky">tools</span><span class="p">:</span> <span class="p">[</span><span class="s">sql</span><span class="p">,</span> <span class="s">search</span><span class="p">,</span> <span class="s">python</span><span class="p">]</span>
 
-<span class="ky">server</span><span class="p">:</span>
-  <span class="ky">host</span><span class="p">:</span> <span class="s">0.0.0.0</span>
-  <span class="ky">port</span><span class="p">:</span> <span class="n">17000</span>
-  <span class="ky">auth</span><span class="p">:</span> <span class="s">jwt</span>
-  <span class="ky">rate_limit</span><span class="p">:</span> <span class="s">100/min</span>
-
 <span class="ky">observability</span><span class="p">:</span>
   <span class="ky">metrics</span><span class="p">:</span> <span class="s">prometheus</span>
   <span class="ky">tracing</span><span class="p">:</span> <span class="s">otel</span>
@@ -331,11 +321,11 @@
               <path d="M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </div>
-          <span class="eco-version">v1.1.1</span>
+          <span class="eco-version">v1.1.2</span>
         </div>
         <h3 class="eco-title">dataenginex</h3>
         <p class="eco-package"><code>pip install dataenginex</code></p>
-        <p class="eco-desc">Core framework — config system, backend registry, CLI, API server, ML lifecycle, AI agents. The engine everything runs on.</p>
+        <p class="eco-desc">Core framework — config system, backend registry, CLI, ML lifecycle, AI agents, DuckDB lakehouse. Pure Python library, no server bundled.</p>
         <a href="https://github.com/TheDataEngineX/DEX" target="_blank" rel="noopener noreferrer" class="eco-link">
           View on GitHub →
         </a>
@@ -353,11 +343,11 @@
               <line x1="13" y1="10" x2="17" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <span class="eco-badge">Reflex</span>
+          <span class="eco-badge">FastAPI</span>
         </div>
         <h3 class="eco-title">dex-studio</h3>
         <p class="eco-package">Port 7860</p>
-        <p class="eco-desc">B2B web UI built on Reflex (Python→React). Monitor pipelines, browse data, inspect ML experiments, chat with AI agents, query via SQL console.</p>
+        <p class="eco-desc">B2B web UI — FastAPI + Jinja2 + HTMX. Monitor pipelines, browse data, inspect ML experiments, chat with AI agents, query via SQL console.</p>
         <a href="https://github.com/TheDataEngineX/dex-studio" target="_blank" rel="noopener noreferrer" class="eco-link">
           View on GitHub →
         </a>
@@ -371,7 +361,7 @@
               <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
             </svg>
           </div>
-          <span class="eco-badge">Reflex</span>
+          <span class="eco-badge">Python</span>
         </div>
         <h3 class="eco-title">careerdex</h3>
         <p class="eco-package">Port 7870</p>
@@ -426,7 +416,6 @@ uv add dataenginex</code></pre>
         <span class="install-label">Extras</span>
         <div class="code-window code-window--sm">
           <pre class="code-block"><code>pip install "dataenginex[cloud]"         <span class="c"># S3 · GCS · BigQuery</span>
-pip install "dataenginex[auth]"          <span class="c"># RS256 · SCIM v2 · LDAP</span>
 pip install "dataenginex[observability]" <span class="c"># Langfuse LLM tracing</span>
 pip install 'litellm>=1.83.3' --no-deps  <span class="c"># 100+ LLM providers</span></code></pre>
         </div>
