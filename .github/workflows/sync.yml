@@ -1,0 +1,73 @@
+name: Sync Docs from Source
+
+on:
+  repository_dispatch:
+    types: [sync-docs]
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repository to sync'
+        required: true
+        default: 'dataenginex'
+        type: choice
+        options:
+          - dataenginex
+          - dex-studio
+      version:
+        description: 'Version tag to sync'
+        required: true
+        default: 'v0.1.0'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Parse payload
+        id: parse
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "repo=${{ github.event.inputs.repo }}" >> $GITHUB_OUTPUT
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "repo=${{ github.event.client_payload.repo }}" >> $GITHUB_OUTPUT
+            echo "version=${{ github.event.client_payload.version }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Clone source docs
+        run: |
+          REPO="${{ steps.parse.outputs.repo }}"
+          VERSION="${{ steps.parse.outputs.version }}"
+          git clone --depth 1 --branch "$VERSION" \
+            "https://github.com/TheDataEngineX/$REPO.git" /tmp/$REPO
+          rm -rf "docs-store/$REPO/$VERSION"
+          mkdir -p "docs-store/$REPO/$VERSION"
+          if [ -d "/tmp/$REPO/docs" ]; then
+            cp -r "/tmp/$REPO/docs/"* "docs-store/$REPO/$VERSION/"
+          fi
+
+      - name: Build site
+        run: |
+          uv python install 3.13
+          uv sync
+          PYTHONPATH=. uv run poe build
+
+      - name: Commit docs-store
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs-store/
+          git diff --cached --quiet || git commit -m "chore: sync docs [skip ci]"
+          git push
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: thedataenginex-org
+          directory: output/
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

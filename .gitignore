@@ -5,3 +5,4 @@ output/
 .uv/
 *.egg-info/
 .DS_Store
+docs-store/

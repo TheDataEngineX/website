@@ -17,6 +17,8 @@
   --color-bg:           #ffffff;
   --color-bg-light:     #eceff1;
   --color-bg-code:      #1e272e;
+  --color-bg-alt:       #f8f9fa;
+  --color-bg-hover:     #e9ecef;
   --color-border:       #cfd8dc;
 
   --font-sans:  system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
