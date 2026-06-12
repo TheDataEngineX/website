@@ -22,17 +22,16 @@ DEFAULT_PAGINATION = False
 # Theme
 THEME = "themes/dex"
 
-# Navigation
+# Navigation — Docs now points to local
 MENUITEMS = [
     ("Why DEX", "/why/"),
-    ("Docs", "https://docs.thedataenginex.org"),
+    ("Docs", "/docs/dataenginex/latest/"),
     ("Changelog", "/changelog/"),
     ("GitHub", "https://github.com/TheDataEngineX/DEX"),
 ]
 
-# Plugins
-PLUGINS = ["pelican.plugins.sitemap"]
-SITEMAP = {"format": "xml"}
+# Plugins — disabled sitemap; build_site.py generates complete sitemap
+PLUGINS = []
 
 # Static paths
 STATIC_PATHS = ["extra"]
@@ -50,4 +49,4 @@ DISPLAY_CATEGORIES_ON_MENU = False
 # Social
 GITHUB_URL = "https://github.com/TheDataEngineX/DEX"
 PYPI_URL = "https://pypi.org/project/dataenginex/"
-DOCS_URL = "https://docs.thedataenginex.org"
+DOCS_URL = "https://thedataenginex.org/docs/dataenginex/latest/"

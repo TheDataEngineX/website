@@ -1,0 +1,99 @@
+{% extends "templates/docs/base.html" %}
+
+{% block title %}{{ page.title }} | {{ repo.display_name }} Docs{% endblock %}
+{% block description %}{{ page.description or site.description }}{% endblock %}
+
+{% block sidebar %}
+<aside class="docs-sidebar" aria-label="Documentation navigation">
+  <div class="docs-version-select">
+    <label for="version-select">Version:</label>
+    <select id="version-select" onchange="window.location.href=this.value">
+      {% for ver in repo.available_versions %}
+      <option value="/docs/{{ repo.name }}/{{ ver }}/"
+              {% if ver == repo.version %}selected{% endif %}>
+        {{ ver }}{% if ver == repo.latest_version %} (latest){% endif %}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <nav aria-label="Pages">
+    <ul class="docs-sidebar-nav">
+      {% for item in navigation.sidebar %}
+      <li>
+        <a href="{{ item.url }}"
+           class="{% if item.active %}active{% endif %}">
+          {{ item.title }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</aside>
+{% endblock %}
+
+{% block content %}
+<article>
+  {% if repo.version != repo.latest_version %}
+  <div class="docs-version-banner">
+    This is an older version of the {{ repo.display_name }} docs.
+    <a href="/docs/{{ repo.name }}/latest/{{ page.slug }}/">View the latest version</a>.
+  </div>
+  {% endif %}
+
+  <nav class="docs-breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Home</a></li>
+      <li><a href="/docs/{{ repo.name }}/latest/">Docs</a></li>
+      <li><a href="/docs/{{ repo.name }}/{{ repo.version }}/">{{ repo.version }}</a></li>
+      <li aria-current="page">{{ page.title }}</li>
+    </ol>
+  </nav>
+
+  <h1>{{ page.title }}</h1>
+
+  {% if page.toc_items %}
+  <nav class="docs-page-toc" aria-label="On this page">
+    <strong>On this page</strong>
+    <ul role="list">
+      {% for item in page.toc_items %}
+      <li><a href="#{{ item.id }}">{{ item.text }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+
+  {{ page.content | safe }}
+
+  {% if page.last_updated %}
+  <p class="docs-last-updated">Last updated: {{ page.last_updated }}</p>
+  {% endif %}
+
+  {% if page.is_stale %}
+  <div class="docs-staleness-banner">
+    This doc was last updated {{ page.months_since_update }} months ago.
+    Some information may be outdated.
+  </div>
+  {% endif %}
+</article>
+{% endblock %}
+
+{% block json_ld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page.title }}",
+  "description": "{{ page.description }}",
+  "url": "{{ site.url }}{{ page.canonical_url or page.url }}",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/"},
+      {"@type": "ListItem", "position": 2, "name": "Docs", "item": "{{ site.url }}/docs/{{ repo.name }}/latest/"},
+      {"@type": "ListItem", "position": 3, "name": "{{ repo.version }}", "item": "{{ site.url }}/docs/{{ repo.name }}/{{ repo.version }}/"},
+      {"@type": "ListItem", "position": 4, "name": "{{ page.title }}"}
+    ]
+  }
+}
+</script>
+{% endblock %}

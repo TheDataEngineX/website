@@ -1,0 +1,14 @@
+site:
+  name: TheDataEngineX
+  url: https://thedataenginex.org
+  description: DataEngineX platform — run AI agents, data pipelines, and ML workflows on your own infrastructure
+
+repos:
+  dataenginex:
+    display_name: DataEngineX
+    description: Python library for data engineering & AI agents
+  dex-studio:
+    display_name: DEX Studio
+    description: Self-hosted web UI for the DataEngineX platform
+
+og_default_image: /theme/img/og-card.png

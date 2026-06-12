@@ -78,6 +78,7 @@ jobs:
     environment:
       name: preview
     permissions:
+      deployments: write
       pull-requests: write
     steps:
       - name: Download build artifact
