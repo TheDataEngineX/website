@@ -6,17 +6,17 @@ on:
   workflow_dispatch:
     inputs:
       repo:
-        description: 'Repository to sync'
+        description: Repository to sync
         required: true
-        default: 'dataenginex'
+        default: dataenginex
         type: choice
         options:
           - dataenginex
           - dex-studio
       version:
-        description: 'Version tag to sync'
+        description: Version tag to sync
         required: true
-        default: 'v0.1.0'
+        default: v0.1.0
 
 permissions:
   contents: write
@@ -44,17 +44,20 @@ jobs:
         run: |
           REPO="${{ steps.parse.outputs.repo }}"
           VERSION="${{ steps.parse.outputs.version }}"
-          git clone --depth 1 --branch "$VERSION" \
-            "https://github.com/TheDataEngineX/$REPO.git" /tmp/$REPO
+          git clone --depth 1 --branch "$VERSION"             "https://github.com/TheDataEngineX/$REPO.git" /tmp/$REPO
           rm -rf "docs-store/$REPO/$VERSION"
           mkdir -p "docs-store/$REPO/$VERSION"
           if [ -d "/tmp/$REPO/docs" ]; then
             cp -r "/tmp/$REPO/docs/"* "docs-store/$REPO/$VERSION/"
           fi
 
+      - uses: astral-sh/setup-uv@v8.2.0
+        with:
+          version: latest
+          python-version: "3.13"
+
       - name: Build site
         run: |
-          uv python install 3.13
           uv sync
           PYTHONPATH=. uv run poe build
 
