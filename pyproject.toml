@@ -1,0 +1,28 @@
+[project]
+name = "dataenginex-website"
+version = "0.1.0"
+description = "thedataenginex.org marketing site + docs"
+requires-python = ">=3.13"
+dependencies = [
+    "pelican[markdown]>=4.10",
+    "Pygments>=2.18",
+    "jinja2>=3.1",
+    "markdown>=3.6",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+images = ["pillow>=10.0"]
+
+[tool.poe.tasks]
+dev = { shell = "PYTHONPATH=. pelican --autoreload --listen --port 8080 content -s pelicanconf.py" }
+build = { shell = "PYTHONPATH=. pelican content -o output -s publishconf.py && python scripts/build_site.py" }
+build-pelican = { shell = "PYTHONPATH=. pelican content -o output -s publishconf.py" }
+build-docs = { shell = "python scripts/build_site.py" }
+clean = { shell = "rm -rf output" }
+serve = { shell = "cd output && python -m http.server 8080" }
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.31",
+]

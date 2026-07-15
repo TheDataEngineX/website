@@ -1,0 +1,871 @@
+{% extends "base.html" %} {% block title %}DataEngineX — Unified Data + ML + AI
+Framework | Open Source, Self-Hosted{% endblock %} {% block description
+%}DataEngineX is the complete platform for Data + ML + AI engineering —
+production-ready pipelines, ML lifecycle, and AI agents unified under one
+dex.yaml. Native integrations with Airflow, MLflow, and LangChain.{% endblock %}
+{% block content %} {#
+══════════════════════════════════════════════════════════════ HERO
+══════════════════════════════════════════════════════════════ #}
+<section class="hero" aria-labelledby="hero-headline">
+    <div class="container hero-inner">
+        <div class="hero-text">
+            <div class="hero-eyebrow">
+                <span class="badge">v0.5.2</span>
+                <span class="badge badge--teal">stable</span>
+            </div>
+            <h1 id="hero-headline" class="hero-headline">
+                DataEngineX: One config file.<br />Complete stack, built in.
+            </h1>
+            <p class="hero-sub">
+                Production-ready Data + ML + AI engineering, unified. Works
+                standalone or alongside
+                Airflow,&nbsp;MLflow,&nbsp;and&nbsp;LangChain.
+            </p>
+            <div class="hero-ctas">
+                <a
+                    href="https://docs.thedataenginex.org/getting-started/"
+                    class="btn btn-primary"
+                >
+                    Get Started
+                </a>
+                <a
+                    href="https://github.com/TheDataEngineX/dataenginex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary"
+                >
+                    <svg
+                        aria-hidden="true"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        />
+                    </svg>
+                    View on GitHub
+                </a>
+            </div>
+            <div class="hero-install">
+                <code class="install-cmd">pip install dataenginex</code>
+                <span class="install-hint"
+                    >— or: <code>uv add dataenginex</code></span
+                >
+            </div>
+        </div>
+
+        <div class="hero-code" aria-label="Example dex.yaml configuration">
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <span class="dot dot--red"></span>
+                    <span class="dot dot--yellow"></span>
+                    <span class="dot dot--green"></span>
+                    <span class="code-window-title">dex.yaml</span>
+                </div>
+                <pre
+                    class="code-block"
+                ><code><span class="ky">data</span><span class="p">:</span>
+  <span class="ky">source</span><span class="p">:</span> <span class="s">s3://my-bucket/raw/</span>
+  <span class="ky">format</span><span class="p">:</span> <span class="s">parquet</span>
+  <span class="ky">quality</span><span class="p">:</span>
+    <span class="ky">null_threshold</span><span class="p">:</span> <span class="n">0.05</span>
+
+<span class="ky">ml</span><span class="p">:</span>
+  <span class="ky">backend</span><span class="p">:</span> <span class="s">mlflow</span>
+  <span class="ky">training</span><span class="p">:</span>
+    <span class="ky">model</span><span class="p">:</span> <span class="s">xgboost</span>
+    <span class="ky">target</span><span class="p">:</span> <span class="s">revenue</span>
+
+<span class="ky">ai</span><span class="p">:</span>
+  <span class="ky">provider</span><span class="p">:</span> <span class="s">openai</span>
+  <span class="ky">retrieval</span><span class="p">:</span> <span class="s">hybrid</span>
+  <span class="ky">agents</span><span class="p">:</span>
+    <span class="p">-</span> <span class="ky">name</span><span class="p">:</span> <span class="s">analyst</span>
+      <span class="ky">tools</span><span class="p">:</span> <span class="p">[</span><span class="s">sql</span><span class="p">,</span> <span class="s">search</span><span class="p">]</span>
+
+<span class="ky">observability</span><span class="p">:</span>
+  <span class="ky">metrics</span><span class="p">:</span> <span class="s">prometheus</span>
+  <span class="ky">tracing</span><span class="p">:</span> <span class="s">otel</span></code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ PROBLEM STRIP
+══════════════════════════════════════════════════════════════ #}
+<section class="problem-strip" aria-labelledby="problem-headline">
+    <div class="container problem-inner">
+        <h2 id="problem-headline" class="problem-headline">
+            Not just orchestration. Not just tracking.<br />The complete stack.
+        </h2>
+        <div class="problem-stats">
+            <div class="stat">
+                <span class="stat-value">1</span>
+                <span class="stat-label">config file</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">0</span>
+                <span class="stat-label">vendor lock-in</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">&#x221E;</span>
+                <span class="stat-label">swappable backends</span>
+            </div>
+        </div>
+        <p class="problem-sub">
+            Airflow for orchestration. MLflow for tracking. LangChain for
+            agents. FastAPI wired together by hand. Prometheus bolted on. Each
+            tool: its own config format, auth system, failure mode, oncall
+            rotation.
+            <strong>Stop building glue. Start shipping products.</strong>
+        </p>
+    </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ FEATURES GRID
+══════════════════════════════════════════════════════════════ #}
+<section class="features" aria-labelledby="features-headline">
+    <div class="container">
+        <h2 id="features-headline" class="section-headline">
+            Everything included
+        </h2>
+        <p class="section-sub">
+            Six domains. One framework. No assembly required.
+        </p>
+
+        <div class="features-grid">
+            {# Data #}
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <ellipse
+                            cx="16"
+                            cy="10"
+                            rx="12"
+                            ry="5"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                        <path
+                            d="M4 10v6c0 2.761 5.373 5 12 5s12-2.239 12-5v-6"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                        <path
+                            d="M4 16v6c0 2.761 5.373 5 12 5s12-2.239 12-5v-6"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                    </svg>
+                </div>
+                <h3 class="feature-title">Data</h3>
+                <p class="feature-desc">
+                    Connectors, transforms, and quality checks from a single
+                    config. DuckDB and Spark backends built in.
+                </p>
+            </article>
+
+            {# ML #}
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <circle
+                            cx="8"
+                            cy="24"
+                            r="3"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                        <circle
+                            cx="16"
+                            cy="10"
+                            r="3"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                        <circle
+                            cx="24"
+                            cy="18"
+                            r="3"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                        <line
+                            x1="10.5"
+                            y1="22"
+                            x2="13.5"
+                            y2="13"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                        <line
+                            x1="18.5"
+                            y1="11.5"
+                            x2="21.5"
+                            y2="16"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                        <line
+                            x1="10.5"
+                            y1="25"
+                            x2="21.5"
+                            y2="20"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-dasharray="2 2"
+                        />
+                    </svg>
+                </div>
+                <h3 class="feature-title">ML Lifecycle</h3>
+                <p class="feature-desc">
+                    Experiment tracking, training, serving, and drift detection
+                    built in. MLflow, W&amp;B, or the built-in backend — your
+                    call.
+                </p>
+            </article>
+
+            {# AI Agents #}
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="4"
+                            y="8"
+                            width="24"
+                            height="16"
+                            rx="4"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                        <circle cx="11" cy="16" r="2" fill="currentColor" />
+                        <circle cx="21" cy="16" r="2" fill="currentColor" />
+                        <path
+                            d="M13 20c0 0 1 2 3 2s3-2 3-2"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            fill="none"
+                        />
+                        <line
+                            x1="16"
+                            y1="4"
+                            x2="16"
+                            y2="8"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                        <line
+                            x1="10"
+                            y1="4"
+                            x2="16"
+                            y2="4"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                        <line
+                            x1="22"
+                            y1="4"
+                            x2="16"
+                            y2="4"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        />
+                    </svg>
+                </div>
+                <h3 class="feature-title">AI Agents</h3>
+                <p class="feature-desc">
+                    LLM providers, hybrid BM25+dense retrieval, and LangGraph
+                    agent runtime — swappable, not locked in.
+                </p>
+            </article>
+
+            {# Server #}
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="4"
+                            y="4"
+                            width="24"
+                            height="7"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                        <rect
+                            x="4"
+                            y="14"
+                            width="24"
+                            height="7"
+                            rx="2"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                        <circle cx="25" cy="7.5" r="1.5" fill="currentColor" />
+                        <circle cx="25" cy="17.5" r="1.5" fill="currentColor" />
+                        <path
+                            d="M11 26l3-4h4l3 4"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            fill="none"
+                        />
+                    </svg>
+                </div>
+                <h3 class="feature-title">DEX Studio</h3>
+                <p class="feature-desc">
+                    Self-hosted web UI — pipelines, warehouse, ML experiments,
+                    AI agents, and SQL console. FastAPI/Jinja2, port 7860.
+                </p>
+            </article>
+
+            {# Observability #}
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <polyline
+                            points="4,24 10,16 15,20 20,10 26,14 30,8"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            fill="none"
+                        />
+                        <line
+                            x1="4"
+                            y1="28"
+                            x2="28"
+                            y2="28"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                        <line
+                            x1="4"
+                            y1="4"
+                            x2="4"
+                            y2="28"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+                </div>
+                <h3 class="feature-title">Observability</h3>
+                <p class="feature-desc">
+                    structlog structured logging, Prometheus metrics, and
+                    OpenTelemetry tracing — wired up from config, not code.
+                </p>
+            </article>
+
+            {# Deploy #}
+            <article class="feature-card">
+                <div class="feature-icon" aria-hidden="true">
+                    <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <polygon
+                            points="16,4 28,10 28,22 16,28 4,22 4,10"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                        <polygon
+                            points="16,10 22,13 22,19 16,22 10,19 10,13"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                        />
+                        <circle cx="16" cy="16" r="2" fill="currentColor" />
+                    </svg>
+                </div>
+                <h3 class="feature-title">Deploy</h3>
+                <p class="feature-desc">
+                    K3s, Helm, and Terraform via infradex. From dev to
+                    production Kubernetes cluster without writing manifests by
+                    hand.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ CODE DEMO
+══════════════════════════════════════════════════════════════ #}
+<section class="code-demo" aria-labelledby="demo-headline">
+    <div class="container code-demo-inner">
+        <div class="code-demo-text">
+            <h2 id="demo-headline">One file. Everything configured.</h2>
+            <p>
+                <code>dex.yaml</code> is the single source of truth for your
+                entire platform. Sources, transforms, quality rules, model
+                config, agent definitions, API settings, and observability — all
+                in one place.
+            </p>
+            <p>
+                No more hunting across twelve repos to find why a pipeline
+                broke. No more "it works in dev" because dev and prod share the
+                same config schema.
+            </p>
+            <ul class="demo-benefits">
+                <li>
+                    <svg
+                        aria-hidden="true"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                    >
+                        <circle
+                            cx="8"
+                            cy="8"
+                            r="7"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        />
+                        <polyline
+                            points="5,8 7,10 11,6"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                    Validate config with <code>dex validate dex.yaml</code>
+                </li>
+                <li>
+                    <svg
+                        aria-hidden="true"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                    >
+                        <circle
+                            cx="8"
+                            cy="8"
+                            r="7"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        />
+                        <polyline
+                            points="5,8 7,10 11,6"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                    Swap backends without changing application code
+                </li>
+                <li>
+                    <svg
+                        aria-hidden="true"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                    >
+                        <circle
+                            cx="8"
+                            cy="8"
+                            r="7"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        />
+                        <polyline
+                            points="5,8 7,10 11,6"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                    Strict Pydantic validation — config errors caught before
+                    runtime
+                </li>
+                <li>
+                    <svg
+                        aria-hidden="true"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                    >
+                        <circle
+                            cx="8"
+                            cy="8"
+                            r="7"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        />
+                        <polyline
+                            points="5,8 7,10 11,6"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                    Same config format from laptop to production cluster
+                </li>
+            </ul>
+            <a
+                href="https://docs.thedataenginex.org/getting-started/"
+                class="btn btn-primary"
+                >Read the docs</a
+            >
+        </div>
+
+        <div class="code-demo-snippet">
+            <div class="code-window">
+                <div class="code-window-bar">
+                    <span class="dot dot--red"></span>
+                    <span class="dot dot--yellow"></span>
+                    <span class="dot dot--green"></span>
+                    <span class="code-window-title"
+                        >dex.yaml — full example</span
+                    >
+                </div>
+                <pre
+                    class="code-block"
+                ><code><span class="c"># DataEngineX — full stack config</span>
+
+<span class="ky">data</span><span class="p">:</span>
+  <span class="ky">source</span><span class="p">:</span> <span class="s">s3://my-bucket/raw/</span>
+  <span class="ky">format</span><span class="p">:</span> <span class="s">parquet</span>
+  <span class="ky">backend</span><span class="p">:</span> <span class="s">duckdb</span>        <span class="c"># or spark</span>
+  <span class="ky">quality</span><span class="p">:</span>
+    <span class="ky">null_threshold</span><span class="p">:</span> <span class="n">0.05</span>
+    <span class="ky">schema_enforcement</span><span class="p">:</span> <span class="b">strict</span>
+    <span class="ky">audit_table</span><span class="p">:</span> <span class="s">quality.audit</span>
+
+<span class="ky">ml</span><span class="p">:</span>
+  <span class="ky">backend</span><span class="p">:</span> <span class="s">mlflow</span>
+  <span class="ky">tracking_uri</span><span class="p">:</span> <span class="s">http://mlflow:5000</span>
+  <span class="ky">training</span><span class="p">:</span>
+    <span class="ky">model</span><span class="p">:</span> <span class="s">xgboost</span>
+    <span class="ky">target</span><span class="p">:</span> <span class="s">revenue</span>
+    <span class="ky">features</span><span class="p">:</span> <span class="p">[</span><span class="s">clicks</span><span class="p">,</span> <span class="s">sessions</span><span class="p">,</span> <span class="s">region</span><span class="p">]</span>
+  <span class="ky">serving</span><span class="p">:</span>
+    <span class="ky">endpoint</span><span class="p">:</span> <span class="s">/api/v1/predict</span>
+    <span class="ky">drift_detection</span><span class="p">:</span> <span class="b">true</span>
+
+<span class="ky">ai</span><span class="p">:</span>
+  <span class="ky">provider</span><span class="p">:</span> <span class="s">openai</span>
+  <span class="ky">model</span><span class="p">:</span> <span class="s">gpt-4o-mini</span>
+  <span class="ky">retrieval</span><span class="p">:</span> <span class="s">hybrid</span>   <span class="c"># BM25 + dense</span>
+  <span class="ky">agents</span><span class="p">:</span>
+    <span class="p">-</span> <span class="ky">name</span><span class="p">:</span> <span class="s">analyst</span>
+      <span class="ky">tools</span><span class="p">:</span> <span class="p">[</span><span class="s">sql</span><span class="p">,</span> <span class="s">search</span><span class="p">,</span> <span class="s">python</span><span class="p">]</span>
+
+<span class="ky">observability</span><span class="p">:</span>
+  <span class="ky">metrics</span><span class="p">:</span> <span class="s">prometheus</span>
+  <span class="ky">tracing</span><span class="p">:</span> <span class="s">otel</span>
+  <span class="ky">log_level</span><span class="p">:</span> <span class="s">info</span></code></pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ ECOSYSTEM
+══════════════════════════════════════════════════════════════ #}
+<section class="ecosystem" aria-labelledby="ecosystem-headline">
+    <div class="container">
+        <h2 id="ecosystem-headline" class="section-headline">
+            One core. Three components.
+        </h2>
+        <p class="section-sub">
+            Each component is independently useful. Together they cover data,
+            ML, AI, and careers.
+        </p>
+
+        <div class="ecosystem-grid">
+            <article class="eco-card eco-card--primary">
+                <div class="eco-card-header">
+                    <div class="eco-icon">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M12 2L2 7l10 5 10-5-10-5z"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linejoin="round"
+                                fill="none"
+                            />
+                            <path
+                                d="M2 17l10 5 10-5"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                fill="none"
+                            />
+                            <path
+                                d="M2 12l10 5 10-5"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                fill="none"
+                            />
+                        </svg>
+                    </div>
+                    <span class="eco-version">v0.5.2</span>
+                </div>
+                <h3 class="eco-title">dataenginex</h3>
+                <p class="eco-package"><code>pip install dataenginex</code></p>
+                <p class="eco-desc">
+                    Core framework — config system, backend registry, CLI, ML
+                    lifecycle, AI agents, DuckDB lakehouse. Pure Python library,
+                    no server bundled.
+                </p>
+                <a
+                    href="https://github.com/TheDataEngineX/dataenginex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="eco-link"
+                >
+                    View on GitHub →
+                </a>
+            </article>
+
+            <article class="eco-card">
+                <div class="eco-card-header">
+                    <div class="eco-icon">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                        >
+                            <rect
+                                x="2"
+                                y="3"
+                                width="20"
+                                height="14"
+                                rx="2"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                fill="none"
+                            />
+                            <line
+                                x1="8"
+                                y1="21"
+                                x2="16"
+                                y2="21"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                            />
+                            <line
+                                x1="12"
+                                y1="17"
+                                x2="12"
+                                y2="21"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                            />
+                            <rect
+                                x="5"
+                                y="6"
+                                width="5"
+                                height="4"
+                                rx="1"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                fill="none"
+                            />
+                            <line
+                                x1="13"
+                                y1="7"
+                                x2="17"
+                                y2="7"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                            />
+                            <line
+                                x1="13"
+                                y1="10"
+                                x2="17"
+                                y2="10"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                            />
+                        </svg>
+                    </div>
+                    <span class="eco-badge">FastAPI</span>
+                </div>
+                <h3 class="eco-title">dex-studio</h3>
+                <p class="eco-package">Port 7860</p>
+                <p class="eco-desc">
+                    B2B web UI — FastAPI + Jinja2 + HTMX. Monitor pipelines,
+                    browse data, inspect ML experiments, chat with AI agents,
+                    query via SQL console.
+                </p>
+                <a
+                    href="https://github.com/TheDataEngineX/dex-studio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="eco-link"
+                >
+                    View on GitHub →
+                </a>
+            </article>
+
+            <article class="eco-card">
+                <div class="eco-card-header">
+                    <div class="eco-icon">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            aria-hidden="true"
+                        >
+                            <polygon
+                                points="12,2 22,8 22,16 12,22 2,16 2,8"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                fill="none"
+                            />
+                            <polygon
+                                points="12,7 17,9.5 17,14.5 12,17 7,14.5 7,9.5"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                fill="none"
+                            />
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="1.5"
+                                fill="currentColor"
+                            />
+                        </svg>
+                    </div>
+                    <span class="eco-badge">K3s + Helm</span>
+                </div>
+                <h3 class="eco-title">infradex</h3>
+                <p class="eco-package">Terraform + Helm</p>
+                <p class="eco-desc">
+                    K3s cluster config, Helm charts for Authentik, Langfuse,
+                    Qdrant, Prometheus, Grafana, ArgoCD. From blank VPS to
+                    production Kubernetes — no manual YAML.
+                </p>
+                <a
+                    href="https://github.com/TheDataEngineX/infradex"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="eco-link"
+                >
+                    View on GitHub →
+                </a>
+            </article>
+        </div>
+    </div>
+</section>
+
+{# ══════════════════════════════════════════════════════════════ INSTALL STRIP
+══════════════════════════════════════════════════════════════ #}
+<section class="install-strip" aria-labelledby="install-headline">
+    <div class="container install-inner">
+        <h2 id="install-headline">Ready to unify your stack?</h2>
+        <p class="install-sub">
+            Install the base package or pick the extras you need.
+        </p>
+
+        <div class="install-blocks">
+            <div class="install-group">
+                <span class="install-label">Base</span>
+                <div class="code-window code-window--sm">
+                    <pre class="code-block"><code>pip install dataenginex
+<span class="c"># or</span>
+uv add dataenginex</code></pre>
+                </div>
+            </div>
+
+            <div class="install-group">
+                <span class="install-label">Extras</span>
+                <div class="code-window code-window--sm">
+                    <pre
+                        class="code-block"
+                    ><code>pip install "dataenginex[cloud]"  <span class="c"># S3 · GCS · BigQuery</span>
+pip install "dataenginex[qdrant]" <span class="c"># Qdrant vector store</span>
+pip install 'litellm>=1.83.3' --no-deps <span class="c"># 100+ LLM providers</span></code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="install-ctas">
+            <a
+                href="https://docs.thedataenginex.org/getting-started/"
+                class="btn btn-primary"
+            >
+                Getting Started Guide
+            </a>
+            <a
+                href="https://github.com/TheDataEngineX/dex-studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-secondary btn-secondary--dark"
+            >
+                View dex-studio on GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

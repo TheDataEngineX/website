@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  {# SEO #}
+  <title>{% block title %}{{ SITETITLE }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ SITEDESCRIPTION }}{% endblock %}" />
+  <meta name="keywords" content="{% block keywords %}{{ SITE_KEYWORDS }}{% endblock %}" />
+  <meta name="author" content="{{ AUTHOR }}" />
+  <link rel="canonical" href="{{ SITEURL }}{% block canonical_path %}/{% endblock %}" />
+
+  {# Open Graph #}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ SITENAME }}" />
+  <meta property="og:title" content="{% block og_title %}{{ SITETITLE }}{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}{{ SITEDESCRIPTION }}{% endblock %}" />
+  <meta property="og:url" content="{{ SITEURL }}{% block og_path %}/{% endblock %}" />
+  <meta property="og:image" content="{% block og_image %}{{ SITEURL }}/theme/img/og-card.png{% endblock %}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="DataEngineX — Unified Data + ML + AI Framework" />
+
+  {# Twitter Card #}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{% block twitter_title %}{{ SITETITLE }}{% endblock %}" />
+  <meta name="twitter:description" content="{% block twitter_description %}{{ SITEDESCRIPTION }}{% endblock %}" />
+  <meta name="twitter:image" content="{% block twitter_image %}{{ SITEURL }}/theme/img/og-card.png{% endblock %}" />
+
+  {# Favicon — inline SVG data URI #}
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2337474f'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='monospace' font-weight='700' font-size='18' fill='%2300897b'>D</text></svg>" />
+
+  {# Styles #}
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css" />
+
+  {# Structured Data — @graph separates Organization from SoftwareApplication #}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://thedataenginex.org/#organization",
+        "name": "TheDataEngineX",
+        "url": "https://thedataenginex.org",
+        "sameAs": [
+          "https://github.com/TheDataEngineX",
+          "https://pypi.org/project/dataenginex/"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://thedataenginex.org/#software",
+        "name": "DataEngineX",
+        "alternateName": ["dataenginex", "dex", "dex framework"],
+        "description": "Open-source, self-hosted Python framework that unifies data pipelines, ML lifecycle, and AI agents in one config file. The open-source alternative to Airflow, MLflow, LangChain, and FastAPI glue.",
+        "url": "https://thedataenginex.org",
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Data Engineering Framework",
+        "operatingSystem": "Linux, macOS, Windows",
+        "programmingLanguage": "Python",
+        "keywords": "DataEngineX, dex framework, self-hosted data platform, unified data ML AI framework, open source Airflow alternative, open source MLflow alternative, Python data pipeline framework, config-driven pipeline, AI agents framework",
+        "author": { "@id": "https://thedataenginex.org/#organization" },
+        "producer": { "@id": "https://thedataenginex.org/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "softwareRequirements": "Python 3.13+",
+        "softwareVersion": "0.4.0",
+        "downloadUrl": "https://pypi.org/project/dataenginex/",
+        "installUrl": "https://docs.thedataenginex.org/getting-started/",
+        "sameAs": [
+          "https://github.com/TheDataEngineX/dataenginex",
+          "https://pypi.org/project/dataenginex/"
+        ],
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://thedataenginex.org/"
+        }
+      }
+    ]
+  }
+  </script>
+
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+
+  {# ── Navigation ───────────────────────────────────────────── #}
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="{{ SITEURL }}/" class="nav-logo" aria-label="DataEngineX home">
+        <span class="nav-logo-d">D</span><span class="nav-logo-ex">EX</span>
+      </a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        {% for title, url in MENUITEMS %}
+        <li>
+          <a href="{{ url }}"
+             {% if url.startswith('http') %}target="_blank" rel="noopener noreferrer"{% endif %}
+             class="nav-link{% if title == 'GitHub' %} nav-link--cta{% endif %}">
+            {{ title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+
+  {# ── Main content ─────────────────────────────────────────── #}
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {# ── Footer ───────────────────────────────────────────────── #}
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="nav-logo-d">D</span><span class="nav-logo-ex">EX</span>
+        <p class="footer-tagline">Config-driven. Self-hosted. Production-ready.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <ul role="list">
+          <li><a href="{{ GITHUB_URL }}" target="_blank" rel="noopener noreferrer" aria-label="View DataEngineX on GitHub">GitHub</a></li>
+          <li><a href="{{ PYPI_URL }}" target="_blank" rel="noopener noreferrer" aria-label="DataEngineX on PyPI">PyPI</a></li>
+          <li><a href="{{ DOCS_URL }}" target="_blank" rel="noopener noreferrer" aria-label="Read DataEngineX Documentation">Documentation</a></li>
+          <li><a href="{{ SITEURL }}/changelog/" aria-label="View DataEngineX Changelog">What's New</a></li>
+          <li><a href="{{ GITHUB_URL }}/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" aria-label="View Apache 2.0 License">License</a></li>
+        </ul>
+      </nav>
+      <p class="footer-copy">
+        &copy; 2025 TheDataEngineX. Apache 2.0.
+      </p>
+    </div>
+  </footer>
+
+  {# ── Mobile nav toggle ────────────────────────────────────── #}
+  <script>
+    (function () {
+      var btn = document.querySelector('.nav-toggle');
+      var links = document.getElementById('nav-links');
+      if (!btn || !links) return;
+      btn.addEventListener('click', function () {
+        var open = links.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }());
+  </script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
