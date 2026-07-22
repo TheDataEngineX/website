@@ -10,5 +10,8 @@ repos:
   dex-studio:
     display_name: DEX Studio
     description: Self-hosted web UI for the DataEngineX platform
+  infradex:
+    display_name: InfraDEX
+    description: GitOps infrastructure for DataEngineX on Kubernetes
 
 og_default_image: /theme/img/og-card.png

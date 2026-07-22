@@ -190,8 +190,8 @@ def main():
     # Collect all pages for sitemap
     sitemap_pages = []
 
-    # Scan Pelican output for existing pages (/, /why/, /changelog/) to include in sitemap
-    pelican_html_dirs = ["", "why", "changelog"]
+    # Scan Pelican output for existing pages (/, /why/, /changelog/, /philosophy/) to include in sitemap
+    pelican_html_dirs = ["", "why", "changelog", "philosophy"]
     for subdir in pelican_html_dirs:
         index_path = OUTPUT_DIR / subdir / "index.html"
         if index_path.exists():

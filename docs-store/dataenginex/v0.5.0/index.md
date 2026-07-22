@@ -1,30 +1,29 @@
-# DataEngineX Documentation v0.5.0
+# DataEngineX Documentation
 
-The Python library that powers DataEngineX Studio — an open-source, self-hosted, local-first Data + ML + AI workbench for individuals and small teams.
+**The Python library (PyPI) — engine, config, CLI, pipelines, ML, AI, PrivacyGuard.**
 
-## Quick Start
+Documentation for the core `dataenginex` library. For the web UI, see [dex-studio](https://github.com/TheDataEngineX/dex-studio).
+
+## Quick start
 
 ```bash
 pip install dataenginex
 ```
 
-## Features
+or
 
-| Subsystem | Built-in | Optional backend |
-|-----------|----------|------------------|
-| Data engine | DuckDB | PySpark |
-| Storage | Local parquet + DuckDB | S3, GCS, BigQuery |
-| Lineage | DuckDB / JSON | PostgreSQL |
-| Scheduler | croniter | — |
-| ML training | scikit-learn | XGBoost, PyTorch |
-| ML tracking | JSON-based | MLflow |
-| LLM providers | Ollama, OpenAI, Anthropic | LiteLLM |
-| Vector store | DuckDB VSS | Qdrant |
-| Retrieval | BM25 + dense + hybrid + graph | Elasticsearch |
-| Connectors | CSV, Parquet, DuckDB, REST, Kafka, SSE, HTTP | Spark, dbt, Delta, PostgreSQL |
+```bash
+uv add dataenginex
+```
 
-## Links
+See [Quickstart](quickstart.md) for a full walkthrough with a sample project.
 
-- [GitHub](https://github.com/TheDataEngineX/dataenginex)
-- [PyPI](https://pypi.org/project/dataenginex/)
-- [Docs](https://docs.thedataenginex.org)
+## Guides
+
+- [Quickstart](quickstart.md) — Get up and running in 5 minutes
+- [Architecture](architecture.md) — Core patterns, module map, design decisions
+- [Development Setup](development.md) — Prerequisites, workflow, troubleshooting
+- [Release Notes](release-notes.md) — Full version history
+- [Observability](observability.md) — Metrics, logging, tracing
+- [CI/CD](ci-cd.md) — CI pipeline and PyPI release automation
+- [Contributing](contributing.md) — How to contribute to the project

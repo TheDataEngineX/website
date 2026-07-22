@@ -25,6 +25,7 @@ THEME = "themes/dex"
 # Navigation — Docs now points to local
 MENUITEMS = [
     ("Why DataEngineX", "/why/"),
+    ("Philosophy", "/philosophy/"),
     ("Docs", "/docs/dataenginex/latest/"),
     ("Changelog", "/changelog/"),
     ("GitHub", "https://github.com/TheDataEngineX/dataenginex"),
