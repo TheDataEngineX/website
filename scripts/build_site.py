@@ -301,7 +301,7 @@ def main():
                     "url": page_url,
                     "last_updated": last_updated or datetime.now().strftime("%Y-%m-%d"),
                     "priority": "0.8",
-                    "changefreq": "weekly",
+                    "changefreq": "yearly",
                 })
 
                 # Search index entry
